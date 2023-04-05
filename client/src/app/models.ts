@@ -9,3 +9,7 @@ export interface Movie {
     image: string;
     commentCount: number;
 }
+
+export interface SearchCriteria {
+    title: string;
+}

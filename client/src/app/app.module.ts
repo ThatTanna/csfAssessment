@@ -12,11 +12,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SpringbootDataService } from './services/springboot-data.service';
+import { SearchComponent } from './search/search.component';
+import { MovieReviewsListComponent } from './movie-reviews-list/movie-reviews-list.component';
+import { PostCommentComponent } from './post-comment/post-comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchReviewComponent
+    SearchReviewComponent,
+    SearchComponent,
+    MovieReviewsListComponent,
+    PostCommentComponent
   ],
   imports: [
     BrowserModule,

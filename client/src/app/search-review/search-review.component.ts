@@ -28,6 +28,12 @@ export class SearchReviewComponent {
   }
 
   searchMovie() {
-    this.sbdsvc.getReviews().then(data => console.log(data))
+    this.title = this.searchForm.value['title'];
+    console.log(this.title);
+    this.router.navigate(['/movie-reviews-list', this.title]);
+
+    // const title = this.searchForm?.value['title'];
+    // console.log(title);
+    // this.router.navigate(['/movie-reviews-list', title]);
   } 
 }
