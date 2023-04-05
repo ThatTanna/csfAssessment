@@ -1,0 +1,13 @@
+<h1>{{ headerTitle }}</h1>
+<form class="form" [formGroup]="searchForm">
+  <mat-form-field class="width-80">
+    <mat-label>Movie Name </mat-label>
+    <input matInput placeholder="Ex. Spider-Man: Across the Spider-Verse" formControlName="title">
+    <button mat-button type="button" (click)="searchMovie()" [disabled]="searchForm.invalid">Search
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+
+
+</form>
