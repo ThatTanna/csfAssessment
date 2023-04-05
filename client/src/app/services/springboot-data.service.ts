@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { Movie } from '../models';
@@ -13,8 +13,12 @@ export class SpringbootDataService {
 
   constructor(private http: HttpClient) { }
 
-  getReviews(title: String): Promise<any> {
-    return lastValueFrom(this.http.get<Movie[]>(`${SPRINGBOOT_URL}/reviews`));
+  getMoviesByTitle(title: string): Promise<Movie[]> {
+    const queryParam = new HttpParams().set('query', title);
+    return lastValueFrom(this.http.get<Movie[]>
+      (`${SPRINGBOOT_URL}/search`, { params: queryParam}));
   }
+
+
 
 }

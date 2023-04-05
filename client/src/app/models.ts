@@ -6,7 +6,7 @@ export interface Movie {
     headline: string;
     summary: string;
     reviewURL: string;
-    image: string;
+    image?: string;
     commentCount: number;
 }
 

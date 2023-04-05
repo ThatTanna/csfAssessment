@@ -2,6 +2,7 @@ package ibf2022.batch1.csf.assessment.server.models;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 // DO NOT MODIFY THIS CLASS
 public class Review {
@@ -98,23 +99,28 @@ public class Review {
 		review.setHeadline(obj.getString("headline"));
 		review.setSummary(obj.getString("summary_short"));
 		review.setReviewURL(obj.getJsonObject("link").getString("url"));
-		if (obj.containsKey("multimedia")) {
+		if (!obj.isNull("multimedia")) {
 			review.setImage(obj.getJsonObject("multimedia").getString("src"));
-		}
+		} 
 		return review;
 	}
 
 	public JsonObject toJson() {
-        return Json.createObjectBuilder()
-				.add("title", title)
-				.add("rating", rating)
-				.add("byline", byline)
-				.add("headline", headline)
-				.add("summary", summary)
-				.add("reviewURL", reviewURL)
-				.add("image", image)
-				.add("commentCount", commentCount)
-				.build();
+		JsonObjectBuilder builder = Json.createObjectBuilder();
+
+		builder.add("title", title);
+		builder.add("rating", rating);
+		builder.add("byline", byline);
+		builder.add("headline", headline);
+		builder.add("summary", summary);
+		builder.add("reviewURL", reviewURL);
+		if (hasImage()) {
+			builder.add("image", image);
+		}
+		builder.add("commentCount", commentCount);
+
+		return builder.build();
+		
     }
 
 	@Override

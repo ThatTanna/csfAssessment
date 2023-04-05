@@ -15,7 +15,8 @@ export class SearchReviewComponent {
   searchForm!: FormGroup
   title!: string;
   
-  constructor(private fb: FormBuilder, private router: Router, private sbdsvc: SpringbootDataService) { }
+  constructor(private fb: FormBuilder, private router: Router,
+    private sbdsvc: SpringbootDataService) { }
   
   ngOnInit(): void {
     this.searchForm = this.createForm()
@@ -23,7 +24,8 @@ export class SearchReviewComponent {
   
   private createForm(): FormGroup {
     return this.fb.group({
-      title: this.fb.control<string>('', [Validators.required, Validators.minLength(2)]),
+      title: this.fb.control<string>('',
+      [Validators.required, Validators.minLength(2)]),
   })
   }
 

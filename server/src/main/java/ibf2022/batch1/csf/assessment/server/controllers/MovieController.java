@@ -33,7 +33,6 @@ public class MovieController {
 
 	@GetMapping("/search")
 	public ResponseEntity<String> searchReviews(@RequestParam String query) {
-
 		List<Review> reviews = movieService.searchReviews(query);
 
 		JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
