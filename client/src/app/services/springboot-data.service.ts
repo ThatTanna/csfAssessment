@@ -4,8 +4,9 @@ import { lastValueFrom } from 'rxjs';
 import { Comments, Movie } from '../models';
 
 // proxy-config.js
-const SPRINGBOOT_URL = 'https://csf-client.vercel.app/api';
+const SPRINGBOOT_URL = 'https://csf-server-production.up.railway.app/api';
 // const SPRINGBOOT_URL = '/api';
+// const SPRINGBOOT_URL = 'http://localhost:8080/api';
 
 @Injectable({
   providedIn: 'root'

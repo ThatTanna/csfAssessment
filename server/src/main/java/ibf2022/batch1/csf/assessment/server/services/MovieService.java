@@ -1,7 +1,6 @@
 package ibf2022.batch1.csf.assessment.server.services;
 
 import java.io.StringReader;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class MovieService {
 
 	public static final String MOVIE_API = "https://api.nytimes.com/svc/movies/v2/reviews";
 
-	@Value("${movie.key}")
+	@Value("${movie.api.key}")
 	private String movieKey;
 
 	// Example ->
