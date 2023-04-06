@@ -5,8 +5,9 @@
     <mat-card *ngFor="let m of movies" class="card">
 
         <mat-card-header>
-            <img mat-card-avatar class="example-header-image" *ngIf="m.image!=null" [src]="m.image" [alt]="m.title">
-            <mat-card-title>{{m.title}}</mat-card-title>
+            <img mat-card-avatar class="example-header-image"
+                *ngIf="m.image!=null" [src]="m.image" [alt]="m.title">
+            <mat-card-title><a href="{{m.reviewURL}}" target="_blank">{{m.title}}</a></mat-card-title>
             <mat-card-subtitle>{{m.rating}}</mat-card-subtitle>
         </mat-card-header>
 
@@ -19,10 +20,12 @@
         <mat-card-content>
             <mat-card-title>{{m.headline}}</mat-card-title>
             <mat-card-subtitle>{{m.summary}}</mat-card-subtitle>
+        
             <mat-card-subtitle>Comments: {{m.commentCount}}</mat-card-subtitle>
 
             <mat-card-actions>
-                <button mat-raised-button color="primary">Comment</button>
+                <button type="button" (click)="toComment(m.title)"
+                    mat-raised-button color="primary">Comment</button>
             </mat-card-actions>
         </mat-card-content>
 

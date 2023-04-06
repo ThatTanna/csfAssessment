@@ -1,10 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Movie } from '../models';
+import { Comments, Movie } from '../models';
 
 // proxy-config.js
-const SPRINGBOOT_URL = '/api';
+const SPRINGBOOT_URL = 'https://csf-client.vercel.app/api';
+// const SPRINGBOOT_URL = '/api';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class SpringbootDataService {
       (`${SPRINGBOOT_URL}/search`, { params: queryParam}));
   }
 
-
-
+  postComment(comment: Comments): Promise<void> {
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+    const body = new HttpParams().appendAll({...comment})
+    return lastValueFrom(this.http.post<void>(`${SPRINGBOOT_URL}/comment`, body.toString(), { headers }));
+  }
+  
 }

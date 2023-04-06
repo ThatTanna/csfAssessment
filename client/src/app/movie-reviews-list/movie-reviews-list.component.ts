@@ -30,4 +30,8 @@ export class MovieReviewsListComponent implements OnInit {
     this.router.navigate(['/search-review']);
   }
 
+  toComment(movieName: string): void {
+    this.router.navigate(['/post-comment', this.title, movieName]);
+  }
+
 }

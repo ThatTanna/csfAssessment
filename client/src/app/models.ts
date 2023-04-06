@@ -13,3 +13,10 @@ export interface Movie {
 export interface SearchCriteria {
     title: string;
 }
+
+export interface Comments {
+    name: string;
+    rating: number;
+    comment: string;
+    movieName: string;
+}

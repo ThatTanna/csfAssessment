@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -13,7 +14,9 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import ibf2022.batch1.csf.assessment.server.models.Comment;
 import ibf2022.batch1.csf.assessment.server.models.Review;
+import ibf2022.batch1.csf.assessment.server.repositories.MovieRepository;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
@@ -21,6 +24,9 @@ import jakarta.json.JsonReader;;
 
 @Service
 public class MovieService {
+
+	@Autowired
+	private MovieRepository movieRepository;
 
 	public static final String MOVIE_API = "https://api.nytimes.com/svc/movies/v2/reviews";
 
@@ -62,7 +68,14 @@ public class MovieService {
 		return jsonArray.stream()
 			.map(v -> v.asJsonObject())
 			.map(Review::toReview)
-			.toList();
+			.map(review -> {
+				review.setCommentCount(movieRepository.countComments(review.getTitle()));
+				return review;
+			}).toList();
+	}
+
+	public void insertComment(Comment comment) {
+		movieRepository.insertComment(comment);
 	}
 
 }

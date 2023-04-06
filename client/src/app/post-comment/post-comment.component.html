@@ -1,1 +1,34 @@
-<p>post-comment works!</p>
+<article>
+
+    <h1> Post Comment for {{movieName}}</h1>
+    <form class="form" [formGroup]="commentForm">
+
+        <table class="full-width">
+            <tr>
+                <td><mat-form-field>
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Fred" required formControlName="name">
+                    </mat-form-field></td>
+            </tr>
+            <tr>
+                <td><mat-form-field>
+                        <mat-label>Rating</mat-label>
+                        <input matInput type="number" placeholder="1" required formControlName="rating" min="1" max="5"
+                            step="1">
+                    </mat-form-field></td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field>
+                        <mat-label>Comment:</mat-label>
+                        <textarea matInput placeholder="Comment" required formControlName="comment"></textarea>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <button mat-raised-button color="primary" (click)="back()" class="buttons">Back</button>
+        <button mat-raised-button color="primary" (click)="postComment()" class="buttons"
+            [disabled]="commentForm.invalid">Post Comment</button>
+    </form>
+
+</article>
